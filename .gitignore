@@ -7,3 +7,4 @@ target/
 # Ignore IDE-specific files and directories
 .idea/
 .vscode/
+/bin/
