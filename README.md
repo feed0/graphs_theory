@@ -11,4 +11,5 @@ It can be either a Digraph or a non-directed graph.
     <li>Isomorphism</li>
     <li>Range search</li>
     <li>Shortest paths</li>
+    <li>Min spanning tree</li>
 </ul>
