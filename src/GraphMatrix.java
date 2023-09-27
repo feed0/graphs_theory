@@ -6,21 +6,126 @@ public class GraphMatrix {
 
 	private static final Random rnd = new Random();
 
-	private int tipoMatriz = 0;
 	private int[][] matrix;
 	private int numVertices;
 
-	// square matrix of size numVertices by numVertices
+	/* Graph types:
+
+		(D)irecionado ou não, (P)onderado ou não
+
+		// criar um enum que carregue esse valores
+
+		0 = não direcionado, 
+		1 = direcionado, 
+		2 = ponderado.
+
+	*/ 
+	private int tipoMatriz = 0;
+
+	// Constructor
 	public GraphMatrix(int numVertices) {
 		this.numVertices = numVertices;
 		matrix = new int[numVertices][numVertices];
 	}
 
+	// Manual constructor
 	public GraphMatrix(int numVertices, int[][] novaMatriz) {
 		this.numVertices = numVertices;
 		matrix = novaMatriz;
 	}
 	
+	/** Randomly fills the matrix with 0s or 1s
+	 */
+	public void randomize() {
+		switch (tipoMatriz) {
+			
+			case 0:
+				for (int i = 0; i < numVertices; i++) {
+					for (int j = 0; j != i; j++) {
+						int value = rnd.nextInt(0, 2);
+						matrix[i][j] = value;
+						matrix[j][i] = value;
+					}
+				}
+				break;
+			
+			case 1: // todo -1 desnecessário (adjacencia)
+				for (int i = 0; i < numVertices; i++) {
+					for (int j = 0; j < i; j++) {
+						int value = rnd.nextInt(-1, 2);
+						matrix[i][j] = value;
+						matrix[j][i] = -value;
+					}
+				}
+				break;
+			
+			default:
+				for (int i = 0; i < numVertices; i++) {
+					for (int j = 0; j < numVertices; j++) {
+						if (i != j) {
+							matrix[i][j] = rnd.nextInt();
+						}
+					}
+				}
+				break;
+
+		}
+	}
+	
+	public boolean isGrafoCompleto() {
+		
+		if (numVertices == 1) {
+			return false;
+		}
+		
+		for (int i = 0; i < numVertices; i++) {
+			for (int j = 0; j < numVertices; j++) {
+				if (i != j && matrix[i][j] == 0) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	public boolean possuiIsomorfismo(int[][] outraMatriz) {
+		//		asd
+		// TODO Buscar/Criar o código deste método
+		return true;
+	}
+	
+	public void rangeSearch(int ponto) {
+		List<Integer> lista = Arrays.asList(ponto);
+		for (int i = 0; i < numVertices; i++) {
+			if (lista.size() == numVertices) {
+				break;
+			}
+			if (!lista.contains(i) && ponto != i && matrix[ponto][i] != 0) {
+				lista.add(i);
+				ponto = i;
+				i = -1;
+			}
+		}
+		
+	}
+
+	/* TODO Formatar uma tabela para a exibição de fácil leitura...
+	 	como não tem mais -1 talvez nem seja necessario */
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+
+		for (int cont = 0; cont < numVertices; cont++) {
+			for (int cont2 = 0; cont2 < numVertices; cont2++) {
+				builder.append(matrix[cont][cont2] + " ");
+			}
+			builder.append("\n");
+		}
+		
+		return builder.toString();
+	}
+	
+	// Get and Set
 	public int getTipoMatriz() {
 		return tipoMatriz;
 	}
@@ -36,90 +141,5 @@ public class GraphMatrix {
 	public int getNumVertices() {
 		return numVertices;
 	}
-
-	// randomly fills the matrix with 0s or 1s
-	public void randomize() {
-		switch (tipoMatriz) {
-		case 0:
-			for (int i = 0; i < numVertices; i++) {
-				for (int j = 0; j != i; j++) {
-					int value = rnd.nextInt(0, 2);
-					matrix[i][j] = value;
-					matrix[j][i] = value;
-				}
-			}
-			break;
-		case 1:
-			for (int i = 0; i < numVertices; i++) {
-				for (int j = 0; j < i; j++) {
-					int value = rnd.nextInt(-1, 2);
-					matrix[i][j] = value;
-					matrix[j][i] = -value;
-				}
-			}
-			break;
-		default:
-			for (int i = 0; i < numVertices; i++) {
-				for (int j = 0; j < numVertices; j++) {
-					if (i != j) {
-						matrix[i][j] = rnd.nextInt();
-					}
-				}
-			}
-			break;
-		}
-	}
-
-	public boolean isGrafoCompleto() {
-
-		if (numVertices == 1) {
-			return false;
-		}
-
-		for (int i = 0; i < numVertices; i++) {
-			for (int j = 0; j < numVertices; j++) {
-				if (i != j && matrix[i][j] == 0) {
-					return false;
-				}
-			}
-		}
-		return true;
-	}
-
-	public boolean possuiIsomorfismo(int[][] outraMatriz) {
-//		asd
-		// TODO Buscar/Criar o código deste método
-		return true;
-	}
-
-	public void rangeSearch(int ponto) {
-		List<Integer> lista = Arrays.asList(ponto);
-		for (int i = 0; i < numVertices; i++) {
-			if (lista.size() == numVertices) {
-				break;
-			}
-			if (!lista.contains(i) && ponto != i && matrix[ponto][i] != 0) {
-				lista.add(i);
-				ponto = i;
-				i = -1;
-			}
-		}
-
-	}
-
-	// TODO Formatar uma tabela para a exibição de fácil leitura
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-
-		for (int cont = 0; cont < numVertices; cont++) {
-			for (int cont2 = 0; cont2 < numVertices; cont2++) {
-				builder.append(matrix[cont][cont2] + " ");
-			}
-			builder.append("\n");
-		}
-
-		return builder.toString();
-	}
-
+	
 }
