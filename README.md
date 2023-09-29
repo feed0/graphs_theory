@@ -1,4 +1,4 @@
-# 4th semester Graph Theory assessment
+# 4th semester Graphs Theory assessment
 
 ## GraphMatrix
 An adjacency matrix based data structure to provide relationship between vertices on a given graph.
