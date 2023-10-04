@@ -19,6 +19,8 @@ Constraints:
     <li>Min spanning tree</li>
 </ol>
 
+## Matrices examples:
+
 Non-directed:     (A - B)
 |     |  A  |  B  |
 |---- |---- |---- |
