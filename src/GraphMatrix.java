@@ -7,39 +7,32 @@ public class GraphMatrix {
 	private static final Random rnd = new Random();
 
 	private int[][] matrix;
-	private int numVertices;
-
-	/* Graph types:
-
-		(D)irecionado ou não, (P)onderado ou não
-
-		// criar um enum que carregue esse valores
-
-		0 = não direcionado, 
-		1 = direcionado, 
-		2 = ponderado.
-
-	*/ 
-	private int tipoMatriz = 0;
-
-	// Constructor
+	private int 	numVertices;
+	private boolean isDirected;
+	private boolean isWeighted;
+	
 	public GraphMatrix(int numVertices) {
 		this.numVertices = numVertices;
 		matrix = new int[numVertices][numVertices];
 	}
 
-	// Manual constructor
 	public GraphMatrix(int numVertices, int[][] novaMatriz) {
 		this.numVertices = numVertices;
 		matrix = novaMatriz;
 	}
 	
-	/** Randomly fills the matrix with 0s or 1s
-	 */
 	public void randomize() {
 		switch (tipoMatriz) {
-			
-			case 0:
+
+			/* TODO implement this function with the new bool atributes
+   			   type 	cells     	  triangles
+   			!dir !wei ... 0s and 1s ... 	mirror 
+       			!dir  wei ... any num   ... 	mirror
+	  		 dir !wei ... 0s and 1s ... (a -> b: x; b -> a: 0)
+      			 dir  wei ... any num 	... (a -> b: x; b -> a: 0)
+	     		*/
+				
+			case 0: 
 				for (int i = 0; i < numVertices; i++) {
 					for (int j = 0; j != i; j++) {
 						int value = rnd.nextInt(0, 2);
