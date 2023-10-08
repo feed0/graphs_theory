@@ -21,26 +21,54 @@ Constraints:
 
 ## Matrices examples:
 
-Non-directed:     (A - B)
-|     |  A  |  B  |
-|---- |---- |---- |
-|  A  |  0  |  1  |
-|  B  |  1  |  0  |
+<table>
+    <caption>Non-directed:</caption>
+    <tr>
+        <th></th> <th>A</th> <th>B</th>
+    </tr>
+    <tr>
+        <th>A</th> <td>0</td> <td>1</td>
+    </tr>
+    <tr>
+        <th>B</th> <td>1</td> <td>0</td>
+    </tr>
+</table>
 
-Digraph:          (A -> B)
-|     |  A  |  B  |
-|---- |---- |---- |
-|  A  |  0  |  1  |
-|  B  |  0  |  0  |     
+<table>
+    <caption>Directed:</caption>
+    <tr>
+        <th></th> <th>A</th> <th>B</th>
+    </tr>
+    <tr>
+        <th>A</th> <td>0</td> <td>1</td>
+    </tr>
+    <tr>
+        <th>B</th> <td>0</td> <td>0</td>
+    </tr>
+</table>
 
-Weighted:         (A - B: 3)
-|     |  A  |  B  |
-|---- |---- |---- |
-|  A  |  0  |  3  |
-|  B  |  3  |  0  |
+<table>
+    <caption>Weighted:</caption>
+    <tr>
+        <th></th> <th>A</th> <th>B</th>
+    </tr>
+    <tr>
+        <th>A</th> <td>0</td> <td>3</td>
+    </tr>
+    <tr>
+        <th>B</th> <td>3</td> <td>0</td>
+    </tr>
+</table>
 
-Weighted digraoh: (B -> A: 3)
-|     |  A  |  B  |
-|---- |---- |---- |
-|  A  |  0  |  0  |
-|  B  |  3  |  0  |
+<table>
+    <caption>Weighted Directed:</caption>
+    <tr>
+        <th></th> <th>A</th> <th>B</th>
+    </tr>
+    <tr>
+        <th>A</th> <td>0</td> <td>0</td>
+    </tr>
+    <tr>
+        <th>B</th> <td>3</td> <td>0</td>
+    </tr>
+</table>
