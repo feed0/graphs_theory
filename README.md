@@ -16,7 +16,6 @@ Constraints:
     <li>Isomorphism</li>
     <li>Range search</li>
     <li>Shortest paths</li>
-    <li>Min spanning tree</li>
 </ol>
 
 ## Matrices examples:
