@@ -197,7 +197,7 @@ public class GraphMatrix {
 	// 	return numComponents;
 	// }
 
-	public int rangeSearch(int ponto) {
+	public int depthSearch(int ponto) {
 		// TODO translate to english
 		int numComponents = 1;
 		List<Integer> lista = new ArrayList<>();
