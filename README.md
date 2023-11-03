@@ -15,7 +15,7 @@ Constraints:
     <li>Complete graph: iterates through every edge. Returns false in case there's not an edge in between two vertices.</li>
     <li>Isomorphism</li>
     <li>Depth search</li>
-    <li>Shortest paths</li>
+    <li>Shortest paths: Dijkstra</li>
 </ol>
 
 ## Matrices examples:
