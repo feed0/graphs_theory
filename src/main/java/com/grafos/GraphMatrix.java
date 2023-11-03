@@ -139,20 +139,54 @@ public class GraphMatrix {
 		}
 	}
 	
-	// Algorithms
+	// ALGORITHMS
+
+	/**
+	 * Iterates through the LOWER TRIANGLE, EXCLUDING the MAIN DIAGONAL.
+	 * Searches for a 0s and values that are not mirrored.
+	 * @return
+	 */
 	public boolean isComplete() {
-		
+		int type = this.matrixType;
+
+		// if there's only one vertex, a simple graph can't be complete
 		if (numVertices == 1) {
 			return false;
 		}
 		
-		for (int i = 0; i < numVertices; i++) {
-			for (int j = 0; j < numVertices; j++) {
-				if (i != j && matrix[i][j] == 0) {
-					return false;
+		switch (type) {
+			case 0, 1: // (!dir !wei) and (!dir  wei)	0s and 1s 	mirror
+				// iterates through the LOWER TRIANGLE
+				for (int i = 1; i < numVertices; i++) {
+					for (int j = 0; j < i; j++) {
+
+						// checks for any 0s
+						if ( matrix[i][j] == 0 || matrix[j][i] == 0 ) {
+							return false;
+						}
+
+					}
 				}
-			}
+				break;
+
+			case 2, 3: // ( dir !wei) and ( dir  wei) 	0s and 1s 	(a -> b: 1; b -> a: 0)
+				// iterates through the LOWER TRIANGLE
+				for (int i = 1; i < numVertices; i++) {
+					for (int j = 0; j < i; j++) {
+
+						// checks for both directions
+						if ( matrix[i][j] == 0 && matrix[j][i] == 0 ) {
+							return false;
+						}
+
+					}
+				}
+				break;
+
+			default:
+				break;
 		}
+			
 		return true;
 	}
 	
