@@ -16,9 +16,9 @@ public class ToStringTest {
         };
         
         String expected = 
-                "0 1 1 1 \n" + //
-                "1 0 1 1 \n" + //
-                "1 1 0 1 \n" + //
+                "0 1 1 1 \n" +
+                "1 0 1 1 \n" +
+                "1 1 0 1 \n" +
                 "1 1 1 0 \n" ;
 
         GraphMatrix gm = new GraphMatrix(4, matrix);
