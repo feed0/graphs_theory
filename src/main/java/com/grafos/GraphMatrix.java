@@ -143,7 +143,7 @@ public class GraphMatrix {
 		}
 	}
 
-	// ALGORITHMS
+	// --- ALGORITHMS ----------------------------------------------------------
 
 	/**
 	 * Iterates through the LOWER TRIANGLE, EXCLUDING the MAIN DIAGONAL.
@@ -195,8 +195,34 @@ public class GraphMatrix {
 		return true;
 	}
 
-	public boolean areIsomorphs(int[][] outraMatriz) {
-		// TODO implement
+	/**
+	 * Checks first ig both graphs have the same number of vertices and are of the
+	 * same type.
+	 * Then iterates through the LOWER TRIANGLE, EXCLUDING the MAIN DIAGONAL.
+	 * Checking for the same adjacency and mirrored adjacency.
+	 * 
+	 * @param outraMatriz GraphMatrix
+	 * @return
+	 */
+	public boolean isIsomorphicTo(GraphMatrix graph2) {
+
+		// Checks for the same number of vertices and the same type
+		if (this.numVertices != graph2.numVertices || this.matrixType != graph2.matrixType) {
+			return false;
+		}
+
+		// Checks for adjacency iterating through the LOWER TRIANGLE
+		for (int i = 1; i < numVertices; i++) {
+			for (int j = 0; j < i; j++) {
+
+				// Checks for the same adjacency and mirrored adjacency
+				if (this.matrix[i][j] != graph2.matrix[i][j] || this.matrix[j][i] != graph2.matrix[j][i]) {
+					return false;
+				}
+
+			}
+		}
+
 		return true;
 	}
 

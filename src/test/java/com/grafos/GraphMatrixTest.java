@@ -57,4 +57,42 @@ public class GraphMatrixTest {
 
     }
 
+    @Test
+    public void isIsomorphicTo() {
+
+        int[][] matrix1, matrix2;
+        GraphMatrix gm1, gm2;
+
+        matrix1 = new int[][] {
+                { 0, 1, 1, 1 },
+                { 1, 0, 1, 1 },
+                { 1, 1, 0, 1 },
+                { 1, 1, 1, 0 }
+        };
+        matrix2 = new int[][] {
+                { 0, 1, 1, 1 },
+                { 1, 0, 1, 1 },
+                { 1, 1, 0, 1 },
+                { 1, 1, 1, 0 }
+        };
+        gm1 = new GraphMatrix(4, matrix1);
+        gm2 = new GraphMatrix(4, matrix2);
+        assertTrue(gm1.isIsomorphicTo(gm2));
+
+        matrix1 = new int[][] {
+                { 0, 1, 1, 1 },
+                { 1, 0, 0, 1 },
+                { 1, 0, 0, 1 },
+                { 1, 1, 1, 0 }
+        };
+        matrix2 = new int[][] {
+                { 0, 1, 1, 1 },
+                { 1, 0, 1, 1 },
+                { 1, 1, 0, 1 },
+                { 1, 1, 1, 0 }
+        };
+        gm1.setMatrix(matrix1);
+        assertFalse(gm1.isIsomorphicTo(gm2));
+
+    }
 }
