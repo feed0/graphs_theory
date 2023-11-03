@@ -18,7 +18,7 @@ public class GraphyInitialize {
 		System.out.println("Is it a weighted graph? (y/n)");
 		boolean isWeighted = scan.next().equalsIgnoreCase("y");
 
-		GraphMatrix gm = new GraphMatrix( numVertices, isDirected, isWeighted );
+		GraphMatrix gm = new GraphMatrix(numVertices, isDirected, isWeighted);
 
 		System.out.println(gm);
 
@@ -36,18 +36,17 @@ public class GraphyInitialize {
 			}
 			System.out.println("Valor inválido!");
 		}
-		
+
 		// gm.rangeSearch(pontoInicio);
-		
-		
-//		GraphMatrix gm2 = new GraphMatrix(4, 
-//				new int[][] {
-//			{0,1,1,1},
-//			{1,0,1,1},
-//			{1,1,0,1},
-//			{1,1,1,0}
-//			});
-//		System.out.println("Grafo Completo? "+gm2.isGrafoCompleto());
+
+		// GraphMatrix gm2 = new GraphMatrix(4,
+		// new int[][] {
+		// {0,1,1,1},
+		// {1,0,1,1},
+		// {1,1,0,1},
+		// {1,1,1,0}
+		// });
+		// System.out.println("Grafo Completo? "+gm2.isGrafoCompleto());
 		scan.close();
 	}
 
