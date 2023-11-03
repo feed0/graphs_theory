@@ -1,0 +1,6 @@
+
+22 october @Felipe
+ADD boolean isDirected, isWeighted and setMatrixType
+FIX constructors (random matrix and input matrix) - now automatically set their matrixType
+FIX randomize() - now iterates always through the LOWER TRIANGLE (instead of the whole matrix)
+FIX matrixType - now concerns 4 types of matrices (instead of 2) inclding weighted ones.
