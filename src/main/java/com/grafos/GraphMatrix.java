@@ -166,7 +166,7 @@ public class GraphMatrix {
 					for (int j = 0; j < i; j++) {
 
 						// checks for any 0s
-						if (matrix[i][j] == 0 || matrix[j][i] == 0) {
+						if (matrix[i][j] == 0) {
 							return false;
 						}
 
