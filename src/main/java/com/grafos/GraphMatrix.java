@@ -41,8 +41,8 @@ public class GraphMatrix {
 	 * @param numVertices int
 	 * @param newMatrix   int[][]
 	 */
-	public GraphMatrix(int numVertices, int[][] newMatrix) {
-		this.numVertices = numVertices;
+	public GraphMatrix(int[][] newMatrix) {
+		this.numVertices = newMatrix.length;
 		matrix = newMatrix;
 		setIsDirected();
 		setIsWeighted();
@@ -180,7 +180,7 @@ public class GraphMatrix {
 					for (int j = 0; j < i; j++) {
 
 						// checks for both directions
-						if (matrix[i][j] == 0 && matrix[j][i] == 0) {
+						if (matrix[i][j] == 0 || matrix[j][i] == 0) {
 							return false;
 						}
 
@@ -393,6 +393,9 @@ public class GraphMatrix {
 
 	public void setMatrix(int[][] matrix) {
 		this.matrix = matrix;
+		setIsDirected();
+		setIsWeighted();
+		setMatrixType();
 	}
 
 	// Get
@@ -404,4 +407,7 @@ public class GraphMatrix {
 		return numVertices;
 	}
 
+	public int getMatrixType() {
+		return matrixType;
+	}
 }

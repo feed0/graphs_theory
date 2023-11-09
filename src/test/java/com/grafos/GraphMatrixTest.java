@@ -12,6 +12,7 @@ public class GraphMatrixTest {
 
     @Test
     public void isCompleteTest() {
+        
         GraphMatrix gm;
         int[][] matrix;
 
@@ -21,7 +22,7 @@ public class GraphMatrixTest {
                 { 1, 1, 0, 1 },
                 { 1, 1, 1, 0 }
         };
-        gm = new GraphMatrix(4, matrix);
+        gm = new GraphMatrix(matrix);
         assertTrue(gm.isComplete());
 
         matrix = new int[][] {
@@ -37,6 +38,7 @@ public class GraphMatrixTest {
     @Test
     public void toStringTest() {
 
+        GraphMatrix gm;
         int[][] matrix;
         String expected;
 
@@ -52,7 +54,7 @@ public class GraphMatrixTest {
                 "1 1 0 1 \n" +
                 "1 1 1 0 \n";
 
-        GraphMatrix gm = new GraphMatrix(4, matrix);
+        gm = new GraphMatrix( matrix);
         assertEquals(gm.toString(), expected);
 
     }
@@ -75,8 +77,8 @@ public class GraphMatrixTest {
                 { 1, 1, 0, 1 },
                 { 1, 1, 1, 0 }
         };
-        gm1 = new GraphMatrix(4, matrix1);
-        gm2 = new GraphMatrix(4, matrix2);
+        gm1 = new GraphMatrix(matrix1);
+        gm2 = new GraphMatrix(matrix2);
         assertTrue(gm1.isIsomorphicTo(gm2));
 
         matrix1 = new int[][] {
