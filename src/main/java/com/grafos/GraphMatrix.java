@@ -149,123 +149,58 @@ public class GraphMatrix {
 	 * Iterates through the LOWER TRIANGLE, EXCLUDING the MAIN DIAGONAL.
 	 * Searches for a 0s and values that are not mirrored.
 	 * 
-	 * @return
+	 * @return true if the graph is connected, false otherwise
 	 */
 	public boolean isComplete() {
-		int type = this.matrixType;
 
 		// if there's only one vertex, a simple graph can't be complete
 		if (numVertices == 1) {
 			return false;
 		}
 
-		switch (type) {
-			case 0, 1: // (!dir !wei) and (!dir wei) 0s and 1s mirror
-				// iterates through the LOWER TRIANGLE
-				for (int i = 1; i < numVertices; i++) {
-					for (int j = 0; j < i; j++) {
+		if (!isDirected) {
+			// iterates through the LOWER TRIANGLE
+			for (int i = 1; i < numVertices; i++) {
+				for (int j = 0; j < i; j++) {
 
-						// checks for any 0s
-						if (matrix[i][j] == 0) {
-							return false;
-						}
-
+					// checks for any 0s
+					if (matrix[i][j] == 0) {
+						return false;
 					}
+
 				}
-				break;
+			}
+		} else {
+			// iterates through the LOWER TRIANGLE
+			for (int i = 1; i < numVertices; i++) {
+				for (int j = 0; j < i; j++) {
 
-			case 2, 3: // ( dir !wei) and ( dir wei) 0s and 1s (a -> b: 1; b -> a: 0)
-				// iterates through the LOWER TRIANGLE
-				for (int i = 1; i < numVertices; i++) {
-					for (int j = 0; j < i; j++) {
-
-						// checks for both directions
-						if (matrix[i][j] == 0 || matrix[j][i] == 0) {
-							return false;
-						}
-
+					// checks for both directions
+					if (matrix[i][j] == 0 || matrix[j][i] == 0) {
+						return false;
 					}
+
 				}
-				break;
-
-			default:
-				break;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Checks first ig both graphs have the same number of vertices and are of the
-	 * same type.
-	 * Then iterates through the LOWER TRIANGLE, EXCLUDING the MAIN DIAGONAL.
-	 * Checking for the same adjacency and mirrored adjacency.
-	 * 
-	 * @param outraMatriz GraphMatrix
-	 * @return
-	 */
-	public boolean isIsomorphicTo(GraphMatrix graph2) {
-
-		// Checks for the same number of vertices and the same type
-		if (this.numVertices != graph2.numVertices || this.matrixType != graph2.matrixType) {
-			return false;
-		}
-
-		// Checks for adjacency iterating through the LOWER TRIANGLE
-		for (int i = 1; i < numVertices; i++) {
-			for (int j = 0; j < i; j++) {
-
-				// Checks for the same adjacency and mirrored adjacency
-				if (this.matrix[i][j] != graph2.matrix[i][j] || this.matrix[j][i] != graph2.matrix[j][i]) {
-					return false;
-				}
-
 			}
 		}
 
 		return true;
 	}
 
-	// public int rangeSearch(int ponto) {
-	// // TODO translate to english
-	// int numComponents = 1;
-	// List<Integer> lista = new ArrayList<>();
-	// List<Integer> listaComponenteAtual = Arrays.asList(ponto);
-	// while(true){
-	// for (int i = 0; i < numVertices; i++) {
-	// if (lista.size() + listaComponenteAtual.size() == numVertices) {
-	// break;
-	// }
-	// if (ponto != i && !listaComponenteAtual.contains(i) && !lista.contains(i) &&
-	// matrix[ponto][i] != 0) {
-	// listaComponenteAtual.add(i);
-	// //lista.add(i);
-	// ponto = i;
-	// i = -1;
-	// }
-	// }
-	// if(lista.size() + listaComponenteAtual.size() != numVertices){
-	// boolean newComponent = false;
-	// for(int i = listaComponenteAtual.size()-2; i>=0; i--){
-	// for(int i2 = 0; i2<numVertices; i2++){
-	// if (i != i2 && !listaComponenteAtual.contains(i2) && !lista.contains(i2) &&
-	// matrix[ponto][i] != 0) {
-	// lista.addAll(listaComponenteAtual);
-	// listaComponenteAtual = Arrays.asList(i2);
-	// ponto = i2;
-	// newComponent = true;
-	// numComponents++;
-	// break;
-	// }
-	// }
-	// if(newComponent){
-	// break;
-	// }
-	// }
-	// }
-	// }
-	// return numComponents;
-	// }
+	/** Prim`s minimum spanning tree algorithm
+	 * 
+	 * @return a matrix with the minimum spanning tree
+	 */
+	public int[][] prim(int initialVertex) {
+
+		if (isDirected) {
+			System.out.println("Prim is designed for undirected graphs only!");
+			return null;
+		}
+
+		return null;
+
+	}
 
 	public int depthSearch(int ponto) {
 		// TODO translate to english

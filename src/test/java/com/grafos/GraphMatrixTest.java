@@ -3,6 +3,8 @@ package com.grafos;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertArrayEquals;
+
 import org.junit.Test;
 
 /**
@@ -60,41 +62,33 @@ public class GraphMatrixTest {
     }
 
     @Test
-    public void isIsomorphicTo() {
+    public void primMinimumSpanningTree() {
 
-        int[][] matrix1, matrix2;
-        GraphMatrix gm1, gm2;
+        int[][] matrix1, expected, actual;
+        GraphMatrix gm1;
 
         matrix1 = new int[][] {
-                { 0, 1, 1, 1 },
-                { 1, 0, 1, 1 },
-                { 1, 1, 0, 1 },
-                { 1, 1, 1, 0 }
-        };
-        matrix2 = new int[][] {
-                { 0, 1, 1, 1 },
-                { 1, 0, 1, 1 },
-                { 1, 1, 0, 1 },
-                { 1, 1, 1, 0 }
+                {0, 4, 2, 0, 3, 0},
+                {4, 0, 0, 5, 0, 0},
+                {2, 0, 0, 1, 6, 3},
+                {0, 5, 1, 0, 0, 6},
+                {3, 0, 6, 0, 0, 2},
+                {0, 0, 3, 6, 2, 0}
         };
         gm1 = new GraphMatrix(matrix1);
-        gm2 = new GraphMatrix(matrix2);
-        assertTrue(gm1.isIsomorphicTo(gm2));
 
-        matrix1 = new int[][] {
-                { 0, 1, 1, 1 },
-                { 1, 0, 0, 1 },
-                { 1, 0, 0, 1 },
-                { 1, 1, 1, 0 }
+        actual = gm1.prim(0);
+        expected = new int[][] {
+              // a, b, c, d, e, f
+                {0, 4, 2, 0, 3, 0}, // a
+                {4, 0, 0, 0, 0, 0}, // b
+                {2, 0, 0, 1, 0, 0}, // c
+                {0, 0, 1, 0, 0, 0}, // d
+                {3, 0, 0, 0, 0, 2}, // e
+                {0, 0, 0, 0, 2, 0}  // f
         };
-        matrix2 = new int[][] {
-                { 0, 1, 1, 1 },
-                { 1, 0, 1, 1 },
-                { 1, 1, 0, 1 },
-                { 1, 1, 1, 0 }
-        };
-        gm1.setMatrix(matrix1);
-        assertFalse(gm1.isIsomorphicTo(gm2));
 
+        assertArrayEquals(expected, actual);
+        gm1.toString();
     }
 }
