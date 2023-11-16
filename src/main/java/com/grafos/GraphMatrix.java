@@ -175,8 +175,8 @@ public class GraphMatrix {
 			for (int i = 1; i < numVertices; i++) {
 				for (int j = 0; j < i; j++) {
 
-					// checks for both directions
-					if (matrix[i][j] == 0 || matrix[j][i] == 0) {
+					// checks for both directions *Unesp
+					if (matrix[i][j] == 0 && matrix[j][i] == 0) {
 						return false;
 					}
 
@@ -187,18 +187,58 @@ public class GraphMatrix {
 		return true;
 	}
 
-	/** Prim`s minimum spanning tree algorithm
+	/**
+	 * Prim`s minimum spanning tree algorithm
+	 * 
+	 * LIMITATIONS: it works only with 1-component graphs
 	 * 
 	 * @return a matrix with the minimum spanning tree
 	 */
-	public int[][] prim(int initialVertex) {
+	public int[] prim(int initialVertex) {
 
-		if (isDirected) {
-			System.out.println("Prim is designed for undirected graphs only!");
-			return null;
+		List<Integer> visited = new ArrayList<>(initialVertex);
+		List<Edge> edges = new ArrayList<>();
+
+		int[] previous = new int[numVertices];
+		Arrays.fill(previous, -1);
+
+		for (; visited.size() < numVertices;) {
+			for (int cont = 0; cont < numVertices; cont++) {
+				if (!visited.contains(cont) && matrix[initialVertex][cont] != 0) {
+					edges.add(new Edge(initialVertex, cont, matrix[initialVertex][cont]));
+				}
+			}
+			Integer minWeight = Integer.MAX_VALUE;
+			List<Edge> minEdges = new ArrayList<>();
+			for (Edge edge : edges) {
+				if (edge.getWeight() < minWeight) {
+					minEdges.clear();
+					minWeight = edge.getWeight();
+					minEdges.add(edge);
+				} else if (edge.getWeight() == minWeight) {
+					minEdges.add(edge);
+				}
+			}
+			if (edges.isEmpty()) {
+				break;
+			}
+			for (Edge edge : minEdges) {
+				if (!visited.contains(edge.getEnd())) {
+					visited.add(edge.getEnd());
+					previous[edge.getEnd()] = edge.getStart();
+					edges.forEach(
+							edge1 -> {
+								if (edge1.getEnd() == edge.getEnd()) {
+									edges.remove(edge1);
+								}
+							});
+					initialVertex = edge.getEnd();
+					break;
+				}
+			}
 		}
 
-		return null;
+		return previous;
 
 	}
 
@@ -255,7 +295,6 @@ public class GraphMatrix {
 		return numComponents;
 	}
 
-	// TODO format as table
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
