@@ -39,4 +39,26 @@ public int rangeSearch(int ponto) {
 	return numComponents;
 	}
 
-    
+    @Test
+        public void toStringTest() {
+
+                GraphMatrix gm;
+                int[][] matrix;
+                String expected;
+
+                matrix = new int[][] {
+                                { 0, 1, 1, 1 },
+                                { 1, 0, 1, 1 },
+                                { 1, 1, 0, 1 },
+                                { 1, 1, 1, 0 }
+                };
+
+                expected = "0 1 1 1 \n" +
+                                "1 0 1 1 \n" +
+                                "1 1 0 1 \n" +
+                                "1 1 1 0 \n";
+
+                gm = new GraphMatrix(matrix);
+                assertEquals(gm.toString(), expected);
+
+        }

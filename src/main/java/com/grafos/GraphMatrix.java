@@ -175,8 +175,8 @@ public class GraphMatrix {
 			for (int i = 1; i < numVertices; i++) {
 				for (int j = 0; j < i; j++) {
 
-					// checks for both directions *Unesp
-					if (matrix[i][j] == 0 && matrix[j][i] == 0) {
+					// checks for both directions *Wolfram
+					if (matrix[i][j] == 0 || matrix[j][i] == 0) {
 						return false;
 					}
 
@@ -185,6 +185,59 @@ public class GraphMatrix {
 		}
 
 		return true;
+	}
+
+	public int depthSearch(int ponto) {
+		// TODO translate to english
+		int numComponents = 1;
+		List<Integer> lista = new ArrayList<>();
+		List<Integer> listaComponenteAtual = Arrays.asList(ponto);
+		while (true) {
+			for (int i = 0; i < numVertices; i++) {
+				if (lista.size() + listaComponenteAtual.size() == numVertices) {
+					break;
+				}
+				if (ponto != i && !listaComponenteAtual.contains(i) && !lista.contains(i) && matrix[ponto][i] != 0) {
+					listaComponenteAtual.add(i);
+					ponto = i;
+					i = -1;
+				}
+			}
+			boolean otherWay = false;
+			if (lista.size() + listaComponenteAtual.size() != numVertices && listaComponenteAtual.size() > 1) {
+				int i = listaComponenteAtual.size() - 2;
+				int i2 = 0;
+				for (; i >= 0; i--) {
+					for (; i2 < numVertices; i2++) {
+						if (i != i2 && !listaComponenteAtual.contains(i2) && !lista.contains(i2)
+								&& matrix[ponto][i] != 0) {
+							otherWay = true;
+							listaComponenteAtual.add(i);
+							ponto = i2;
+							break;
+						}
+					}
+					if (otherWay) {
+						break;
+					}
+				}
+			}
+			if (lista.size() + listaComponenteAtual.size() != numVertices && !otherWay) {
+				numComponents++;
+				lista.addAll(listaComponenteAtual);
+				for (int cont = 0; cont < numVertices; cont++) {
+					if (!lista.contains(cont)) {
+						listaComponenteAtual = Arrays.asList(cont);
+						ponto = cont;
+						break;
+					}
+				}
+			}
+			if (lista.size() + listaComponenteAtual.size() == numVertices) {
+				break;
+			}
+		}
+		return numComponents;
 	}
 
 	/**
@@ -240,59 +293,6 @@ public class GraphMatrix {
 
 		return previous;
 
-	}
-
-	public int depthSearch(int ponto) {
-		// TODO translate to english
-		int numComponents = 1;
-		List<Integer> lista = new ArrayList<>();
-		List<Integer> listaComponenteAtual = Arrays.asList(ponto);
-		while (true) {
-			for (int i = 0; i < numVertices; i++) {
-				if (lista.size() + listaComponenteAtual.size() == numVertices) {
-					break;
-				}
-				if (ponto != i && !listaComponenteAtual.contains(i) && !lista.contains(i) && matrix[ponto][i] != 0) {
-					listaComponenteAtual.add(i);
-					ponto = i;
-					i = -1;
-				}
-			}
-			boolean otherWay = false;
-			if (lista.size() + listaComponenteAtual.size() != numVertices && listaComponenteAtual.size() > 1) {
-				int i = listaComponenteAtual.size() - 2;
-				int i2 = 0;
-				for (; i >= 0; i--) {
-					for (; i2 < numVertices; i2++) {
-						if (i != i2 && !listaComponenteAtual.contains(i2) && !lista.contains(i2)
-								&& matrix[ponto][i] != 0) {
-							otherWay = true;
-							listaComponenteAtual.add(i);
-							ponto = i2;
-							break;
-						}
-					}
-					if (otherWay) {
-						break;
-					}
-				}
-			}
-			if (lista.size() + listaComponenteAtual.size() != numVertices && !otherWay) {
-				numComponents++;
-				lista.addAll(listaComponenteAtual);
-				for (int cont = 0; cont < numVertices; cont++) {
-					if (!lista.contains(cont)) {
-						listaComponenteAtual = Arrays.asList(cont);
-						ponto = cont;
-						break;
-					}
-				}
-			}
-			if (lista.size() + listaComponenteAtual.size() == numVertices) {
-				break;
-			}
-		}
-		return numComponents;
 	}
 
 	@Override
