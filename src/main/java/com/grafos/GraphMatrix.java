@@ -366,6 +366,7 @@ public class GraphMatrix {
 
 	public void setMatrix(int[][] matrix) {
 		this.matrix = matrix;
+		this.numVertices = matrix.length;
 		setIsDirected();
 		setIsWeighted();
 		setMatrixType();

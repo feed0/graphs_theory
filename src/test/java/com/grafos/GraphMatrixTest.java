@@ -68,6 +68,58 @@ public class GraphMatrixTest {
                 int actual = gm.depthSearch(2);
                 
                 assertEquals(expected, actual);
+
+                // a two component 3x3 atrix 
+                matrix = new int[][] {
+                        { 0, 1, 0 },
+                        { 1, 0, 0 },
+                        { 0, 0, 0 }
+                };
+                gm.setMatrix(matrix);
+
+                expected = 2;
+                actual = gm.depthSearch(0);
+
+                assertEquals(expected, actual);
+
+                // three components 3x3 matrix
+                matrix = new int[][] {
+                        { 0, 0, 0 },
+                        { 0, 0, 0 },
+                        { 0, 0, 0 }
+                };
+                gm.setMatrix(matrix);
+
+                expected = 3;
+                actual = gm.depthSearch(0);
+
+                assertEquals(expected, actual);
+
+                // 4-vertex digraph with 2 components (d is isolated)
+                matrix = new int[][] {
+                        { 0, 1, 1, 0 },
+                        { 0, 0, 0, 0 },
+                        { 0, 0, 0, 0 },
+                        { 0, 0, 0, 0 }
+                };
+                gm.setMatrix(matrix);
+
+                expected = 2;
+                actual = gm.depthSearch(0);
+
+                assertEquals(expected, actual);
+
+                // 4-vertex digraph with 2 components (ab and cd)
+                matrix = new int[][] {
+                        { 0, 1, 0, 0 },
+                        { 10, 0, 0, 0 },
+                        { 0, 0, 0, 20 },
+                        { 0, 0, 2, 0 }
+                };
+                gm.setMatrix(matrix);
+
+                expected = 2;
+                actual = gm.depthSearch(0);
         }
 
         @Test
