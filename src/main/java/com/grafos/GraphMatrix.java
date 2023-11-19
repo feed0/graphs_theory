@@ -238,6 +238,43 @@ public class GraphMatrix {
 		}
 		return numComponents;
 	}
+	
+	public int[][] dijkstra(int source) {
+		int[][] previousAndDist = new int[numVertices][2];
+        boolean[] sptSet = new boolean[numVertices];
+        
+        for (int i = 0; i < numVertices; i++) {
+        	previousAndDist[i][0] = -1;
+            previousAndDist[i][1] = Integer.MAX_VALUE/2;
+        }
+
+        previousAndDist[source][1] = 0;
+        sptSet[source] = true;
+        int u = source;
+        for (int count = 0; count < numVertices - 1; count++) {
+            for (int v = 0; v < numVertices; v++) {
+                if (!sptSet[v] && u != v && matrix[u][v] != 0 && (previousAndDist[u][1] + matrix[u][v] < previousAndDist[v][1])) {
+                	previousAndDist[v][1] = previousAndDist[u][1] + matrix[u][v];
+                	previousAndDist[v][0] = u;
+                }
+            }
+            u = minDistance(previousAndDist, sptSet);
+        }
+        return previousAndDist;
+    }
+    private int minDistance(int[][] previousAndDist, boolean[] sptSet) {
+        int min = Integer.MAX_VALUE/2;
+        int minIndex = -1;
+
+        for (int v = 0; v < numVertices; v++) {
+            if (!sptSet[v] && previousAndDist[v][1] <= min) {
+                min = previousAndDist[v][1];
+                minIndex = v;
+            }
+        }
+        sptSet[minIndex] = true;
+        return minIndex;
+    }
 
 	/**
 	 * Prim`s minimum spanning tree algorithm

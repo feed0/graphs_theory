@@ -121,6 +121,19 @@ public class GraphMatrixTest {
                 expected = 2;
                 actual = gm.depthSearch(0);
         }
+        
+        @Test
+        public void dijkstra() {
+        	int[][] graph = {
+                    {0, 2, 0, 6, 0},
+                    {0, 0, 3, 8, 5},
+                    {0, 0, 0, 0, 7},
+                    {0, 0, 0, 0, 0},
+                    {0, 0, 0, 9, 0}
+                };        
+                GraphMatrix asd = new GraphMatrix(graph);
+                asd.dijkstra(0);
+        }
 
         @Test
         public void prim() {
