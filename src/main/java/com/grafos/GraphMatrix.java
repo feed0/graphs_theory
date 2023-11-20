@@ -175,8 +175,8 @@ public class GraphMatrix {
 			for (int i = 1; i < numVertices; i++) {
 				for (int j = 0; j < i; j++) {
 
-					// checks for both directions *Wolfram
-					if (matrix[i][j] == 0 || matrix[j][i] == 0) {
+					// checks for both directions *Wolfram VS Unesp quarrel
+					if (matrix[i][j] == 0 && matrix[j][i] == 0) {
 						return false;
 					}
 
