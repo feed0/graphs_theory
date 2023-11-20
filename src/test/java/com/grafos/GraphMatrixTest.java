@@ -20,18 +20,18 @@ public class GraphMatrixTest {
 
                 matrix = new int[][] {
                                 { 0, 13, 28, 5 },
-                                { 23, 3, 0, 73 },
+                                { 23, 3, 9, 73 },
                                 { 1, 2, 11, 12 },
-                                { 0, 0, 43, 0 }
+                                { 40, 7, 43, 0 }
                 };
                 gm = new GraphMatrix(matrix);
                 assertTrue(gm.isComplete());
 
                 matrix = new int[][] {
-                                { 4, 1, 0, 13 },
-                                { 0, 3, 0, 100 },
-                                { 1, 0, 2, 41 },
-                                { 7, 1, 52, 9 }
+                                { 4, 1, 49, 13 },
+                                { 31, 0, 11, 100 },
+                                { 1, 52, 0, 41 },
+                                { 7, 1, 0, 9 }
                 };
                 gm.setMatrix(matrix);
                 assertFalse(gm.isComplete());
