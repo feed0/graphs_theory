@@ -19,19 +19,19 @@ public class GraphMatrixTest {
                 int[][] matrix;
 
                 matrix = new int[][] {
-                                { 0, 1, 1, 1 },
-                                { 1, 0, 1, 1 },
-                                { 1, 1, 0, 1 },
-                                { 1, 1, 1, 0 }
+                                { 0, 13, 28, 5 },
+                                { 23, 3, 0, 73 },
+                                { 1, 2, 11, 12 },
+                                { 0, 0, 43, 0 }
                 };
                 gm = new GraphMatrix(matrix);
                 assertTrue(gm.isComplete());
 
                 matrix = new int[][] {
-                                { 0, 1, 0, 1 },
-                                { 1, 0, 1, 1 },
-                                { 1, 1, 0, 1 },
-                                { 1, 1, 1, 0 }
+                                { 4, 1, 0, 13 },
+                                { 0, 3, 0, 100 },
+                                { 1, 0, 2, 41 },
+                                { 7, 1, 52, 9 }
                 };
                 gm.setMatrix(matrix);
                 assertFalse(gm.isComplete());
@@ -159,7 +159,7 @@ public class GraphMatrixTest {
                 int[] actual = gm.prim(0);
 
                 // Previous = {0, a, a, c, a, e}
-                expected = new int[] { 0, 0, 0, 2, 0, 4 };
+                expected = new int[] { -1, 0, 0, 2, 0, 4 };
 
                 // assert expected == gm.prim
                 assertArrayEquals(expected, actual);

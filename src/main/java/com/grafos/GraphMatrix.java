@@ -2,6 +2,7 @@ package com.grafos;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -285,7 +286,7 @@ public class GraphMatrix {
 	 */
 	public int[] prim(int initialVertex) {
 
-		List<Integer> visited = new ArrayList<>(initialVertex);
+		List<Integer> visited = new ArrayList<>(Arrays.asList(initialVertex));
 		List<Edge> edges = new ArrayList<>();
 
 		int[] previous = new int[numVertices];
@@ -315,12 +316,19 @@ public class GraphMatrix {
 				if (!visited.contains(edge.getEnd())) {
 					visited.add(edge.getEnd());
 					previous[edge.getEnd()] = edge.getStart();
-					edges.forEach(
-							edge1 -> {
-								if (edge1.getEnd() == edge.getEnd()) {
-									edges.remove(edge1);
-								}
-							});
+//					edges.forEach(
+//							edge1 -> {
+//								if (edge1.getEnd() == edge.getEnd()) {
+//									edges.remove(edge1);
+//								}
+//							});
+					Iterator<Edge> iterator = edges.iterator();
+			        while (iterator.hasNext()) {
+			            Edge edge1 = iterator.next();
+			            if (edge1.getEnd() == edge.getEnd()) {
+			                iterator.remove();
+			            }
+			        }
 					initialVertex = edge.getEnd();
 					break;
 				}
