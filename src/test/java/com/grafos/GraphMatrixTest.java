@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 
 /**
@@ -43,37 +45,38 @@ public class GraphMatrixTest {
                 int[][] matrix;
 
                 // 8 vertices
-                /*      0: 2,3
-                        1: 3, 5, 6
-                        2: 0, 4, 5
-                        3: 0, 1, 5, 7
-                        4: 2
-                        5: 1, 2, 3
-                        6: 1, 7
-                        7: 3, 6
-                */
+                /*
+                 * 0: 2,3
+                 * 1: 3, 5, 6
+                 * 2: 0, 4, 5
+                 * 3: 0, 1, 5, 7
+                 * 4: 2
+                 * 5: 1, 2, 3
+                 * 6: 1, 7
+                 * 7: 3, 6
+                 */
                 matrix = new int[][] {
-                        { 0, 0, 1, 1, 0, 0, 0, 0 },
-                        { 0, 0, 0, 1, 0, 1, 1, 0 },
-                        { 1, 0, 0, 0, 1, 1, 0, 0 },
-                        { 1, 1, 0, 0, 0, 1, 0, 1 },
-                        { 0, 0, 1, 0, 0, 0, 0, 0 },
-                        { 0, 1, 1, 1, 0, 0, 0, 0 },
-                        { 0, 1, 0, 0, 0, 0, 0, 1 },
-                        { 0, 0, 0, 1, 0, 0, 1, 0 }
+                                { 0, 0, 1, 1, 0, 0, 0, 0 },
+                                { 0, 0, 0, 1, 0, 1, 1, 0 },
+                                { 1, 0, 0, 0, 1, 1, 0, 0 },
+                                { 1, 1, 0, 0, 0, 1, 0, 1 },
+                                { 0, 0, 1, 0, 0, 0, 0, 0 },
+                                { 0, 1, 1, 1, 0, 0, 0, 0 },
+                                { 0, 1, 0, 0, 0, 0, 0, 1 },
+                                { 0, 0, 0, 1, 0, 0, 1, 0 }
                 };
                 gm = new GraphMatrix(matrix);
-                
+
                 int expected = 1;
                 int actual = gm.depthSearch(2);
-                
+
                 assertEquals(expected, actual);
 
-                // a two component 3x3 atrix 
+                // a two component 3x3 atrix
                 matrix = new int[][] {
-                        { 0, 1, 0 },
-                        { 1, 0, 0 },
-                        { 0, 0, 0 }
+                                { 0, 1, 0 },
+                                { 1, 0, 0 },
+                                { 0, 0, 0 }
                 };
                 gm.setMatrix(matrix);
 
@@ -84,9 +87,9 @@ public class GraphMatrixTest {
 
                 // three components 3x3 matrix
                 matrix = new int[][] {
-                        { 0, 0, 0 },
-                        { 0, 0, 0 },
-                        { 0, 0, 0 }
+                                { 0, 0, 0 },
+                                { 0, 0, 0 },
+                                { 0, 0, 0 }
                 };
                 gm.setMatrix(matrix);
 
@@ -97,10 +100,10 @@ public class GraphMatrixTest {
 
                 // 4-vertex digraph with 2 components (d is isolated)
                 matrix = new int[][] {
-                        { 0, 1, 1, 0 },
-                        { 0, 0, 0, 0 },
-                        { 0, 0, 0, 0 },
-                        { 0, 0, 0, 0 }
+                                { 0, 1, 1, 0 },
+                                { 0, 0, 0, 0 },
+                                { 0, 0, 0, 0 },
+                                { 0, 0, 0, 0 }
                 };
                 gm.setMatrix(matrix);
 
@@ -111,26 +114,26 @@ public class GraphMatrixTest {
 
                 // 4-vertex digraph with 2 components (ab and cd)
                 matrix = new int[][] {
-                        { 0, 1, 0, 0 },
-                        { 10, 0, 0, 0 },
-                        { 0, 0, 0, 20 },
-                        { 0, 0, 2, 0 }
+                                { 0, 1, 0, 0 },
+                                { 10, 0, 0, 0 },
+                                { 0, 0, 0, 20 },
+                                { 0, 0, 2, 0 }
                 };
                 gm.setMatrix(matrix);
 
                 expected = 2;
                 actual = gm.depthSearch(0);
         }
-        
+
         @Test
         public void dijkstra() {
-        	int[][] graph = {
-                    {0, 2, 0, 6, 0},
-                    {0, 0, 3, 8, 5},
-                    {0, 0, 0, 0, 7},
-                    {0, 0, 0, 0, 0},
-                    {0, 0, 0, 9, 0}
-                };        
+                int[][] graph = {
+                                { 0, 2, 0, 6, 0 },
+                                { 0, 0, 3, 8, 5 },
+                                { 0, 0, 0, 0, 7 },
+                                { 0, 0, 0, 0, 0 },
+                                { 0, 0, 0, 9, 0 }
+                };
                 GraphMatrix asd = new GraphMatrix(graph);
                 asd.dijkstra(0);
         }
@@ -146,6 +149,7 @@ public class GraphMatrixTest {
                 // ab4 ac2 ae3
                 // bd5 cd1 ce6
                 // df6 ef2
+                // test 1
                 matrix = new int[][] {
                                 { 0, 4, 2, 0, 3, 0 },
                                 { 4, 0, 0, 5, 0, 0 },
@@ -163,5 +167,29 @@ public class GraphMatrixTest {
 
                 // assert expected == gm.prim
                 assertArrayEquals(expected, actual);
+
+                // 6 vertices graph with the following edges:
+                // ab4 ac3, bc1 bd3, cd4, de2, ef6
+
+                // test 2
+                matrix = new int[][] {
+                                { 0, 4, 3, 0, 0, 0 },
+                                { 4, 0, 1, 3, 0, 0 },
+                                { 3, 1, 0, 4, 0, 0 },
+                                { 0, 3, 4, 0, 2, 0 },
+                                { 0, 0, 0, 2, 0, 6 },
+                                { 0, 0, 0, 0, 6, 0 }
+                };
+                gm.setMatrix(matrix);
+
+                // previous = {0, c, a, b, d, e}
+                expected = new int[] { -1, 2, 0, 1, 3, 4 };
+                actual = gm.prim(0);
+
+                assertArrayEquals(expected, actual);
+
+                int[] giganticArray = new int[1000000];
+                Arrays.fill(giganticArray, 0);
         }
+
 }
