@@ -127,15 +127,43 @@ public class GraphMatrixTest {
 
         @Test
         public void dijkstra() {
-                int[][] graph = {
-                                { 0, 2, 0, 6, 0 },
-                                { 0, 0, 3, 8, 5 },
-                                { 0, 0, 0, 0, 7 },
-                                { 0, 0, 0, 0, 0 },
-                                { 0, 0, 0, 9, 0 }
+                int[][] matrix;
+                GraphMatrix gm;
+                int[][] expected;
+                int[][] actual;
+
+                // matrix = new int[][] {
+                //                 { 0, 2, 0, 6, 0 },
+                //                 { 0, 0, 3, 8, 5 },
+                //                 { 0, 0, 0, 0, 7 },
+                //                 { 0, 0, 0, 0, 0 },
+                //                 { 0, 0, 0, 9, 0 }
+                // };
+                // GraphMatrix asd = new GraphMatrix(matrix);
+                // asd.dijkstra(0);
+
+                // test 2
+                // 5 vertices digraph with the following edges:
+                // ab6, ae5, bd3, ca5, da5, dc6, de3, ec2, ed6 
+                matrix = new int[][] {
+                                { 0, 6, 0, 0, 5 },
+                                { 0, 0, 0, 3, 0 },
+                                { 5, 0, 0, 0, 0 },
+                                { 5, 0, 6, 3, 0 },
+                                { 0, 0, 2, 6, 0 }
                 };
-                GraphMatrix asd = new GraphMatrix(graph);
-                asd.dijkstra(0);
+                gm = new GraphMatrix(matrix);
+
+                actual = gm.dijkstra(0);
+                expected = new int[][] {
+                                { 0, 6, 0, 0, 5 },
+                                { 0, 0, 0, 3, 0 },
+                                { 0, 0, 0, 0, 0 },
+                                { 0, 0, 0, 0, 0 },
+                                { 0, 0, 2, 0, 0 }
+                };
+
+                assertArrayEquals(expected, actual);
         }
 
         @Test
